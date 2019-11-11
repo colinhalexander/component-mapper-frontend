@@ -8,6 +8,7 @@ footer {
   padding-left: 30px;
 }
 
-footer > p {
+footer a {
   text-decoration: none;
+  color: white;
 }

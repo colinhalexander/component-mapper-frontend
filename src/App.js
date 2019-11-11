@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-import './App.css';
+import './stylesheets/App.css';
 
 import UserPage from './containers/UserPage';
 import HowToPage from './components/HowToPage';
@@ -17,9 +17,9 @@ export default class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Route path="/user/:username" component={UserPage} />
+          <Route path="/user/:username" render={(props) => <UserPage {...props} />} />
           <Route path="/how-to" component={HowToPage} />
-          <Route exact path="/" render={() => <LandingPage />} />
+          <Route exact path="/" render={(props) => <LandingPage {...props} />} />
         </div>
       </Router>
     )

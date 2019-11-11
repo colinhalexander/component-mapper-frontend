@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import './LandingPage.css'
+import '../stylesheets/LandingPage.css'
 
 import SignInForm from '../components/SignInForm'
 import NavBar from '../components/NavBar'
