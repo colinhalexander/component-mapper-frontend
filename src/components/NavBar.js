@@ -14,7 +14,7 @@ export default function NavBar(props) {
           <h1>Component Mapper</h1>
         </hgroup>
       </Link>
-      <Link className="nav-link" to="/user/:username">User Profile</Link>
+      <Link className="nav-link" to="/user/example-user">User Profile</Link>
     </header>
   )
 }
