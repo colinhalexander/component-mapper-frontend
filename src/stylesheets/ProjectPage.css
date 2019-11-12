@@ -2,10 +2,13 @@
   color: white;
   background-color: lightblue;
   min-height: 100vh;
+  max-width: 100vw;
 }
 
 .project-page > h2 {
   font-size: 30px;
   font-weight: 700;
   padding: 20px 30px;
+  color: lightblue;
+  background-color: white;
 }
