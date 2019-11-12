@@ -24,7 +24,10 @@ export default class UserPage extends Component {
         return (
           <Link
             key={index}
-            to={`${username}/${this.toKebabCase(project.name)}`}
+            to={{
+              pathname: `${username}/${this.toKebabCase(project.name)}`,
+              state: { project }
+            }}
           >
             {project.name}
           </Link>
