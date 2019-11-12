@@ -1,0 +1,15 @@
+.component-level {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-flow: row nowrap;
+  overflow-x: auto;
+  height: 100px;
+  min-width: max-content;
+  border-top: solid;
+}
+
+.component {
+  border: solid 1px black;
+  padding: 10px 10px;
+}
