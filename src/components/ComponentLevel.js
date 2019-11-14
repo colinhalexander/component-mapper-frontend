@@ -5,10 +5,25 @@ import '../stylesheets/ComponentLevel.css'
 import Komponent from './Komponent'
 
 export default class ComponentLevel extends Component {
+
+  state = {
+    clickedComponent: null
+  }
+
+  selectComponent = (component) => {
+    this.setState({ clickedComponent: component })
+  }
   
   makeComponents = () => {
     return this.props.components.map((component, index) => {
-      return <Komponent key={index} component={component} />
+      return (
+        <Komponent 
+          key={index}
+          component={component}
+          selectComponent={this.selectComponent}
+          isActive={component === this.state.clickedComponent}
+        />
+      )
     })
   }
 

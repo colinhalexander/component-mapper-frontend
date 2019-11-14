@@ -12,16 +12,28 @@ export default class Komponent extends Component {
     })
   }
 
+  selectComponentAndShowDetails = () => {
+    const { isActive, selectComponent } = this.props
+
+    !isActive 
+      ? selectComponent(this.props.component)
+      : this.toggleDetails()
+  }
+
   render() {
+    const { isActive } = this.props
     const { name, type, notes } = this.props.component
 
     return (
-      <div className="component" onClick={this.toggleDetails}>
+      <div 
+        className={`component ${isActive ? "active" : ""}`}
+        onClick={this.selectComponentAndShowDetails}
+      >
         <h4>{name}</h4>
         {this.state.showMore 
           ? <>
               <p>Type: {type}</p>
-              <p>Notes: {notes}</p>
+              {notes ? <p>Notes: {notes}</p> : ""}
             </>
           : ""
         }
