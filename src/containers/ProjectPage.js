@@ -7,81 +7,18 @@ export default class ProjectPage extends Component {
 
   state = {
     project: {
-      name: "Component Mapper",
-      description: "It maps components for React projects",
-      components: [{
-        name: "App",
-        type: "class",
-        notes: "",
-        children: [{
-          name: "LandingPage",
-          type: "class",
-          notes: "",
-          children: [{
-            name: "NavBar",
-            type: "functional",
-            notes: ""
-          }, {
-            name: "Footer",
-            type: "functional",
-            notes: ""
-          }]
-        }, {
-          name: "HowToPage",
-          type: "functional",
-          notes: "",
-          children: [{
-            name: "NavBar",
-            type: "functional",
-            notes: ""
-          }, {
-            name: "Footer",
-            type: "functional",
-            notes: ""
-          }]
-        }, {
-          name: "UserPage",
-          type: "class",
-          notes: "",
-          children: [{
-            name: "NavBar",
-            type: "functional",
-            notes: ""
-          }, {
-            name: "Footer",
-            type: "functional",
-            notes: ""
-          }]
-        }, {
-          name: "ProjectPage",
-          type: "class",
-          notes: "",
-          children: [{
-            name: "ComponentLevel",
-            type: "class",
-            notes: "",
-            children: [{
-              name: "Component",
-              type: "class",
-              notes: "",
-            }]
-          }, {
-            name: "ComponentForm",
-            type: "class",
-            notes: "",
-          }]
-        }]
-      }]
+      name: "Loading Project...",
+      components: []
     }
   }
   
-  // componentDidMount() {
-  //   const { project } = this.props.location.state
+  componentDidMount() {
+    const { project } = this.props.location.state || { project: { id: 1 } }
 
-  //   fetch(`http://localhost:3000/projects/${project.id}`)
-  //     .then(response => response.json())
-  //     .then(project => this.setState({ project }))
-  // }
+    fetch(`http://localhost:3000/projects/${project.id}`)
+      .then(response => response.json())
+      .then(project => this.setState({ project }))
+  }
 
   render() {
     const { username } = this.props.match.params
@@ -89,7 +26,7 @@ export default class ProjectPage extends Component {
     return (
       <div className="project-page">
         <h2>{this.state.project.name} by {username}</h2>
-        <ComponentLevel components={this.state.project.components} />
+        <ComponentLevel components={this.state.project.components} level={0} />
       </div>
     )
   }

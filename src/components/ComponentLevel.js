@@ -14,7 +14,7 @@ export default class ComponentLevel extends Component {
 
   getChildComponents = () => {
     return this.props.components
-      .filter(component => component.children) // assumes cp.children is null (falsy), aka not an empty array, may need to change based on data structuring in backend
+      .filter(component => component.children)
       .map(parent => parent.children.map(child => {
           return {
             ...child,
@@ -26,17 +26,23 @@ export default class ComponentLevel extends Component {
   }
   
   render() {
+    const { level } = this.props
+
     return (
-      <>
+      <div className="level-wrapper">
+        <p id="level-tag">{level === 0 ? "Top" : `Level ${level}`}</p>
         <div className="component-level">
           {this.makeComponents()}
         </div>
         {
           this.getChildComponents()[0] 
-          ? <ComponentLevel components={this.getChildComponents()} /> 
+          ? <ComponentLevel
+              components={this.getChildComponents()}
+              level={this.props.level + 1}
+            /> 
           : ""
         }
-      </>
+      </div>
     )
   }
 }
