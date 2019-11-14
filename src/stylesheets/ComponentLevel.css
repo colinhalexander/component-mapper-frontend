@@ -1,7 +1,6 @@
 .component-level {
   display: flex;
   align-items: center;
-  justify-content: space-around;
   flex-flow: row nowrap;
   overflow-x: auto;
   height: 200px;

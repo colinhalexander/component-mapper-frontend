@@ -40,8 +40,8 @@ export default class Komponent extends Component {
   }
 
   render() {
-    const { name, type, notes } = this.props.component
-    const { isActive } = this.props
+    const { isActive, toggleForm, component } = this.props
+    const { name, type, notes } = component
     const { showMenu, showMore } = this.state
 
     return (
@@ -58,7 +58,15 @@ export default class Komponent extends Component {
             />
           : ""
         }
-        {showMenu && isActive ? <ComponentMenu toggleMenu={this.toggleMenu} /> : ""}
+        {
+          showMenu && isActive
+            ? <ComponentMenu
+                toggleForm={toggleForm}
+                toggleMenu={this.toggleMenu}
+                component={component}
+              />
+            : ""
+        }
         <h4>{name}</h4>
         {
           showMore

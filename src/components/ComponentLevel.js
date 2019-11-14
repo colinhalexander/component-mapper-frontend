@@ -22,6 +22,7 @@ export default class ComponentLevel extends Component {
   
   makeComponents = () => {
     const { clickedComponent } = this.state
+    const { toggleForm } = this.props
 
     return this.props.components.map((component, index) => {
       return (
@@ -31,6 +32,7 @@ export default class ComponentLevel extends Component {
           selectComponent={this.selectComponent}
           isActive={component === clickedComponent}
           activeParentID={this.props.activeParentID}
+          toggleForm={toggleForm}
         />
       )
     })
@@ -64,7 +66,7 @@ export default class ComponentLevel extends Component {
   
   render() {
     const { clickedComponent } = this.state
-    const { level, showAll } = this.props
+    const { level, showAll, toggleForm } = this.props
 
     return (
       <div className="level-wrapper" onClick={this.deselectComponent}>
@@ -83,6 +85,7 @@ export default class ComponentLevel extends Component {
               level={level + 1}
               showAll={showAll}
               activeParentID={clickedComponent ? clickedComponent.id : null}
+              toggleForm={toggleForm}
             /> 
           : ""
         }

@@ -13,11 +13,28 @@ export default class ProjectPage extends Component {
       components: [{}]
     },
     showAll: true,
-    showForm: false
+    form: {
+      show: false,
+      component: {}
+    }
   }
 
-  showForm = (component) => {
-    this.setState(this.showForm)
+  toggleForm = (component) => {
+    if (!this.state.form.show && component) {
+      this.setState({
+        form: {
+          component,
+          show: true
+        }
+      })
+    } else {
+      this.setState({
+        form: {
+          show: false,
+          component: {}
+        }
+      })
+    }
   }
   
   componentDidMount() {
@@ -36,7 +53,7 @@ export default class ProjectPage extends Component {
 
   render() {
     const { username } = this.props.match.params
-    const { project, showAll, showForm } = this.state
+    const { project, showAll, form } = this.state
     
 
     return (
@@ -53,8 +70,9 @@ export default class ProjectPage extends Component {
           components={project.components}
           level={0}
           showAll={showAll}
+          toggleForm={this.toggleForm}
         />
-        {showForm ? <ComponentForm projectID={project.id} /> : ""}
+        {form.show ? <ComponentForm toggleForm={this.toggleForm} component={form.component} projectID={project.id} /> : ""}
       </div>
     )
   }

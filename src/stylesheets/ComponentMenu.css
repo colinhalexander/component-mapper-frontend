@@ -8,7 +8,7 @@
   position: sticky;
   border: solid 1px lightblue;
   width: 250px;
-  z-index: 100;
+  z-index: 1;
 }
 
 .component-menu-option {
