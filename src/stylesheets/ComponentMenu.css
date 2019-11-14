@@ -1,13 +1,14 @@
 .component-menu-wrapper {
-  position: fixed;
-  height: 100vh;
-  width: 100vw;
-  z-index: 1;
+  position: absolute;
+  right: 25px;
+  top: 5px;
 }
 
 .component-menu {
-  border: solid 1px;
-  width: 200px;
+  position: sticky;
+  border: solid 1px lightblue;
+  width: 250px;
+  z-index: 100;
 }
 
 .component-menu-option {
@@ -15,6 +16,6 @@
 }
 
 .component-menu-option:hover {
-  background-color: rgb(173, 216, 230);
-
+  background-color: rgb(197, 241, 255);
+  color: white;
 }

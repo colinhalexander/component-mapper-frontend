@@ -8,6 +8,7 @@
   max-width: 100vw;
   border-bottom: solid;
   margin-top: -25px; /* offset to compensate for level-tag */
+  padding: 0px 20px;
 }
 
 #level-tag {
@@ -29,7 +30,6 @@
   width: 100%;
   min-width: 200px;
   height: 100px;
-  overflow: auto;
   text-align: center;
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.144);
 }
@@ -58,10 +58,10 @@
 
 #component-menu-icon {
   position: absolute;
-  height: 30px;
   right: 0;
   top: 5px;
   transition: all .2s;
+  height: 30px;
 }
 
 #component-menu-icon:hover {

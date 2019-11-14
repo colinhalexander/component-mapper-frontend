@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import '../stylesheets/ProjectPage.css'
 
 import ComponentLevel from '../components/ComponentLevel'
+import ComponentForm from '../components/ComponentForm'
 
 export default class ProjectPage extends Component {
 
@@ -11,7 +12,12 @@ export default class ProjectPage extends Component {
       name: "Loading Project...",
       components: [{}]
     },
-    showAll: true
+    showAll: true,
+    showForm: false
+  }
+
+  showForm = (component) => {
+    this.setState(this.showForm)
   }
   
   componentDidMount() {
@@ -30,7 +36,7 @@ export default class ProjectPage extends Component {
 
   render() {
     const { username } = this.props.match.params
-    const { project, showAll } = this.state
+    const { project, showAll, showForm } = this.state
     
 
     return (
@@ -48,6 +54,7 @@ export default class ProjectPage extends Component {
           level={0}
           showAll={showAll}
         />
+        {showForm ? <ComponentForm projectID={project.id} /> : ""}
       </div>
     )
   }

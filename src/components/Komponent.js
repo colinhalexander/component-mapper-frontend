@@ -21,12 +21,14 @@ export default class Komponent extends Component {
     })
   }
 
-  selectComponentAndShowDetails = () => {
+  selectComponentAndShowDetails = (event) => {
     const { isActive, selectComponent, component } = this.props
 
-    !isActive 
-      ? selectComponent(component)
-      : this.toggleDetails()
+    if (event.target.id !== "component-menu-icon") {
+      !isActive 
+        ? selectComponent(component)
+        : this.toggleDetails()
+    }
   }
 
   writeClassList = () => {
@@ -39,6 +41,7 @@ export default class Komponent extends Component {
 
   render() {
     const { name, type, notes } = this.props.component
+    const { isActive } = this.props
     const { showMenu, showMore } = this.state
 
     return (
@@ -46,21 +49,24 @@ export default class Komponent extends Component {
         className={this.writeClassList()}
         onClick={this.selectComponentAndShowDetails}
       >
-        <div>
-          <img
-            src="http://ai-i3.infcdn.net/icons_siandroid/png/300/2416/2416616.png"
-            alt="menu icon" id="component-menu-icon"
-            onClick={this.toggleMenu}
-          />
-          {showMenu ? <ComponentMenu /> : ""}
-        </div>
-        <h4>{name}</h4>
-        {showMore 
-          ? <>
-              <p>Type: {type}</p>
-              {notes ? <p>Notes: {notes}</p> : ""}
-            </>
+        {isActive
+          ? <img
+              src="http://ai-i3.infcdn.net/icons_siandroid/png/300/2416/2416616.png"
+              alt="menu icon"
+              id="component-menu-icon"
+              onClick={this.toggleMenu}
+            />
           : ""
+        }
+        {showMenu && isActive ? <ComponentMenu toggleMenu={this.toggleMenu} /> : ""}
+        <h4>{name}</h4>
+        {
+          showMore
+            ? (<>
+                <p>Type: {type}</p>
+                {notes ? <p>Notes: {notes}</p> : ""}
+              </>)
+            : ""
         }
       </div>
     )
