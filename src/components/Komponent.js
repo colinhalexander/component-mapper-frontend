@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 
+import ComponentMenu from './ComponentMenu'
+
 export default class Komponent extends Component {
   
   state = {
-    showMore: false
+    showMore: false,
+    showMenu: false
   }
 
   toggleDetails = () => {
@@ -12,25 +15,47 @@ export default class Komponent extends Component {
     })
   }
 
+  toggleMenu = () => {
+    this.setState({
+      showMenu: this.props.isActive && !this.state.showMenu
+    })
+  }
+
   selectComponentAndShowDetails = () => {
-    const { isActive, selectComponent } = this.props
+    const { isActive, selectComponent, component } = this.props
 
     !isActive 
-      ? selectComponent(this.props.component)
+      ? selectComponent(component)
       : this.toggleDetails()
   }
 
+  writeClassList = () => {
+    const { isActive, activeParentID, component } = this.props
+
+    return "component" + 
+           `${isActive ? " active" : ""}` +
+           `${activeParentID === component.parentID ? " active-parent" : ""}`
+  }
+
   render() {
-    const { isActive } = this.props
     const { name, type, notes } = this.props.component
+    const { showMenu, showMore } = this.state
 
     return (
       <div 
-        className={`component ${isActive ? "active" : ""}`}
+        className={this.writeClassList()}
         onClick={this.selectComponentAndShowDetails}
       >
+        <div>
+          <img
+            src="http://ai-i3.infcdn.net/icons_siandroid/png/300/2416/2416616.png"
+            alt="menu icon" id="component-menu-icon"
+            onClick={this.toggleMenu}
+          />
+          {showMenu ? <ComponentMenu /> : ""}
+        </div>
         <h4>{name}</h4>
-        {this.state.showMore 
+        {showMore 
           ? <>
               <p>Type: {type}</p>
               {notes ? <p>Notes: {notes}</p> : ""}

@@ -1,0 +1,20 @@
+.component-menu-wrapper {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1;
+}
+
+.component-menu {
+  border: solid 1px;
+  width: 200px;
+}
+
+.component-menu-option {
+  background-color: white;
+}
+
+.component-menu-option:hover {
+  background-color: rgb(173, 216, 230);
+
+}

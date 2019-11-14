@@ -10,7 +10,13 @@
   margin-top: -25px; /* offset to compensate for level-tag */
 }
 
+#level-tag {
+  padding: 5px;
+  font-size: 15px;
+}
+
 .component {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,9 +27,11 @@
   font-size: 20px;
   line-height: 1.5;
   width: 100%;
+  min-width: 200px;
   height: 100px;
   overflow: auto;
   text-align: center;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.144);
 }
 
 .component.active {
@@ -31,12 +39,31 @@
   color: lightblue;
 }
 
+.component.active-parent {
+  border: solid 3px;
+}
+
 .component > h4 {
   font-size: 24px;
   font-weight: bold;
 }
 
-#level-tag {
-  padding: 5px;
-  font-size: 15px;
+.component:hover {
+  background-color: rgba(208, 239, 250, 0.233);
+}
+
+.component.active:hover {
+  background-color: white;
+}
+
+#component-menu-icon {
+  position: absolute;
+  height: 30px;
+  right: 0;
+  top: 5px;
+  transition: all .2s;
+}
+
+#component-menu-icon:hover {
+  transform: scale(1.2);
 }

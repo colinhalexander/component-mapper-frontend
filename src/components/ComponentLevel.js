@@ -13,21 +13,30 @@ export default class ComponentLevel extends Component {
   selectComponent = (component) => {
     this.setState({ clickedComponent: component })
   }
+
+  deselectComponent = (event) => {
+    if (event.target.classList.contains("component-level")) {
+      this.setState({ clickedComponent: null })
+    }
+  }
   
   makeComponents = () => {
+    const { clickedComponent } = this.state
+
     return this.props.components.map((component, index) => {
       return (
         <Komponent 
           key={index}
           component={component}
           selectComponent={this.selectComponent}
-          isActive={component === this.state.clickedComponent}
+          isActive={component === clickedComponent}
+          activeParentID={this.props.activeParentID}
         />
       )
     })
   }
 
-  getChildComponents = () => {
+  getAllChildComponents = () => {
     return this.props.components
       .filter(component => component.children)
       .map(parent => parent.children.map(child => {
@@ -39,21 +48,41 @@ export default class ComponentLevel extends Component {
       )
       .flat()
   }
+
+  getChildrenOfClickedComponent = () => {
+    const { clickedComponent } = this.state
+
+    if (clickedComponent && clickedComponent.children) {
+      return clickedComponent.children.map(child => {
+        return {
+          ...child,
+          parentID: clickedComponent.id
+        }
+      })
+    } else return []
+  }
   
   render() {
-    const { level } = this.props
+    const { clickedComponent } = this.state
+    const { level, showAll } = this.props
 
     return (
-      <div className="level-wrapper">
+      <div className="level-wrapper" onClick={this.deselectComponent}>
         <p id="level-tag">{level === 0 ? "Top" : `Level ${level}`}</p>
         <div className="component-level">
           {this.makeComponents()}
         </div>
         {
-          this.getChildComponents()[0] 
+          this.getAllChildComponents()[0] 
           ? <ComponentLevel
-              components={this.getChildComponents()}
-              level={this.props.level + 1}
+              components={
+                showAll
+                ? this.getAllChildComponents()
+                : this.getChildrenOfClickedComponent()
+              }
+              level={level + 1}
+              showAll={showAll}
+              activeParentID={clickedComponent ? clickedComponent.id : null}
             /> 
           : ""
         }
