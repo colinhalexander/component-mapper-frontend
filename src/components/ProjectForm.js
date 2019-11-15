@@ -11,8 +11,29 @@ export default class ProjectForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
+    const { hideForm, addProject } = this.props
 
-    // post to backend
+    const request = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(this.state)
+    }
+
+    fetch("http://localhost:3000/projects", request)
+      .then(response => response.json())
+      .then(newProject => {
+        
+        addProject(newProject)
+        hideForm()
+      })
+  }
+
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
   }
   
   render() {
@@ -23,8 +44,18 @@ export default class ProjectForm extends Component {
         <form className="project-form" onSubmit={this.handleSubmit}>
           <h3>New Project</h3>
           <div className="project-form-inputs">
-            <input name="name" value={name} placeholder="Name" />
-            <input name="description" value={description} placeholder="Description" />
+            <input
+              name="name"
+              value={name}
+              placeholder="Name"
+              onChange={this.handleChange}
+            />
+            <input
+              name="description"
+              value={description}
+              placeholder="Description"
+              onChange={this.handleChange}
+            />
             <input type="submit" value="Create Project" id="submit-new-project" />
           </div>
         </form>

@@ -11,16 +11,16 @@
 
 .user-header {
   width: 100%;
-  padding: 20px 0px;
+  padding: 20px;
   font-size: 28px;
   font-weight: bold;
   border-bottom: solid 1px;
-  padding-left: 20px;
 }
 
 .user-info-projects-wrapper {
   display: grid;
   grid-template-columns: 2fr 3fr;
+  max-height: 290px;
 }
 
 .user-info {
@@ -28,6 +28,7 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  max-height: 290px;
 }
 
 #user-avatar > img {
@@ -52,7 +53,6 @@
 .user-projects {
   display: flex;
   flex-flow: column nowrap;
-  overflow-y: auto;
   padding: 20px;
 }
 
@@ -74,6 +74,12 @@
 #add-project:hover {
   transform: scale(1.1);
   cursor: pointer;
+}
+
+.projects-list {
+  overflow: auto;
+  border: 1px solid;
+  height: 210px;
 }
 
 .user-project {

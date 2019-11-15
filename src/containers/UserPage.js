@@ -22,12 +22,28 @@ export default class UserPage extends Component {
   }
 
   toggleForm = (event) => {
-    if (event.target.className === "project-form-wrapper"
-        || event.target.id === "add-project") {
+    if (event) {
+      if (event.target.className === "project-form-wrapper"
+          || event.target.id === "add-project") {
+        this.setState({
+          showForm: !this.state.showForm
+        })
+      }
+    } else if (!event) {
       this.setState({
-        showForm: !this.state.showForm
+        showForm: false
       })
     }
+  }
+
+  addProject = (project) => {
+    const projectsCopy = [...this.state.projects]
+
+    projectsCopy.push(project)
+
+    this.setState({
+      projects: projectsCopy
+    })
   }
   
   listProjects = () => {
@@ -35,14 +51,13 @@ export default class UserPage extends Component {
 
     return this.state.projects.map((project, index) => {
         return (
-          <div className="user-project">
+          <div className="user-project" key={index}>
             <div className="project-description">
               <h3 className="project-title">{project.name}</h3>
               <p>{project.description}</p>
             </div>
             <Link
               className="project-link"
-              key={index}
               to={{
                 pathname: `${username}/${this.toKebabCase(project.name)}`,
                 state: { project }
@@ -84,12 +99,18 @@ export default class UserPage extends Component {
                     onClick={this.toggleForm}
                   />
                 </div>
-                {this.listProjects()}
+                <div className="projects-list">
+                  {this.listProjects()}
+                </div>
               </div>
             </div>
           </section>
         </main>
-        {showForm ? <ProjectForm hideForm={this.toggleForm} /> : ""}
+        {
+          showForm
+            ? <ProjectForm hideForm={this.toggleForm} addProject={this.addProject} />
+            : ""
+        }
         <Footer />
       </div>
     )
