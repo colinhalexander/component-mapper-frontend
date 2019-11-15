@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
+import '../stylesheets/UserPage.css'
+import plusIcon from '../media/plus-icon.png'
+
 import NavBar from '../components/NavBar'
 import Footer from '../components/Footer'
+import ProjectForm from '../components/ProjectForm'
 
 export default class UserPage extends Component {
 
   state = {
-    projects: []
+    projects: [],
+    showForm: false
   }
 
   componentDidMount() {
@@ -16,32 +21,75 @@ export default class UserPage extends Component {
       .then(projects => this.setState({ projects }))
   }
 
-  render() {
+  toggleForm = (event) => {
+    if (event.target.className === "project-form-wrapper"
+        || event.target.id === "add-project") {
+      this.setState({
+        showForm: !this.state.showForm
+      })
+    }
+  }
+  
+  listProjects = () => {
     const { username } = this.props.match.params
 
-    const listProjects = () => {
-      return this.state.projects.map((project, index) => {
+    return this.state.projects.map((project, index) => {
         return (
-          <Link
-            key={index}
-            to={{
-              pathname: `${username}/${this.toKebabCase(project.name)}`,
-              state: { project }
-            }}
-          >
-            {project.name}
-          </Link>
+          <div className="user-project">
+            <div className="project-description">
+              <h3 className="project-title">{project.name}</h3>
+              <p>{project.description}</p>
+            </div>
+            <Link
+              className="project-link"
+              key={index}
+              to={{
+                pathname: `${username}/${this.toKebabCase(project.name)}`,
+                state: { project }
+              }}
+            >
+              <img src="http://nkmediasolutions.com/images/Icon-arrow-right-white.png" alt="arrow icon" className="arrow-icon" />
+            </Link>
+          </div>
         )
       })
     }
 
+  render() {
+    const { username } = this.props.match.params
+    const { showForm } = this.state
+
     return (
       <div className="user-page">
-        <NavBar />
+        <NavBar history={this.props.history} />
         <main>
-          <p>UserPage for <strong>{username}</strong></p>
-          {listProjects()}
+          <section className="user-profile">
+            <div className="user-header">
+              <p>{username}</p>
+            </div>
+            <div className="user-info-projects-wrapper">
+              <div className="user-info">
+                <div id="user-avatar">
+                  <img src="http://www.marismith.com/wp-content/uploads/2014/07/facebook-profile-blank-face.jpeg" alt="avatar" />
+                </div>
+                <p>Firstname Lastname</p>
+                <br />
+                <p>Bio: Some kind of information here, just like something you know, for example, this, or maybe something like this, etc.</p>
+              </div>
+              <div className="user-projects">
+                <div className="projects-header">
+                  <h3>Projects</h3>
+                  <img src={plusIcon} alt="add-project"
+                    id="add-project"
+                    onClick={this.toggleForm}
+                  />
+                </div>
+                {this.listProjects()}
+              </div>
+            </div>
+          </section>
         </main>
+        {showForm ? <ProjectForm hideForm={this.toggleForm} /> : ""}
         <Footer />
       </div>
     )

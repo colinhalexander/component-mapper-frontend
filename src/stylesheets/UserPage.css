@@ -1,0 +1,107 @@
+.user-profile {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(144, 200, 219);
+  width: 700px;
+  height: 360px;
+  color: white;
+  border: 2px double rgba(10, 51, 63, 0.349);
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.192);
+}
+
+.user-header {
+  width: 100%;
+  padding: 20px 0px;
+  font-size: 28px;
+  font-weight: bold;
+  border-bottom: solid 1px;
+  padding-left: 20px;
+}
+
+.user-info-projects-wrapper {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+#user-avatar > img {
+  height: 100%;
+}
+
+#user-avatar {
+  display: flex;
+  justify-content: center;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  border: 3px solid white;
+  overflow: hidden;
+  margin-bottom: 20px;;
+}
+
+.user-info > p {
+  width: 100%;
+}
+
+.user-projects {
+  display: flex;
+  flex-flow: column nowrap;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.projects-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#add-project {
+  width: 25px;
+  margin-right: 5px;
+  transition: all .2s;
+}
+
+#add-project:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.user-project {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  border: solid 1px;
+  line-height: 1.4;
+}
+
+.user-project > p {
+  font-size: 12px;
+}
+
+.project-title {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.arrow-icon {
+  width: 25px;
+  height: 25px;
+}
+
+.arrow-icon:hover {
+  transform: scale(1.05);
+}
+

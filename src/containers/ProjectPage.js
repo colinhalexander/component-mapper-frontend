@@ -23,7 +23,7 @@ export default class ProjectPage extends Component {
     components.forEach(component => {
       if (component.id !== parentID) {
         if (component.children) {
-          this.findParentAndAddChild(component.children, newComponent, parentID)
+            this.findParentAndAddChild(component.children, newComponent, parentID)
         }
       } else {
         if (component.children) {
@@ -85,14 +85,15 @@ export default class ProjectPage extends Component {
 
   render() {
     const { username } = this.props.match.params
+    const { history } = this.props
     const { project, showAll, form } = this.state
     
-
     return (
       <div className="project-page">
         <header>
           <h2>{project.name} by {username}</h2>
           <div className="project-menu">
+            <p onClick={() => history.goBack()}>Back</p>
             <p onClick={this.toggleShowAll}>
               {showAll ? "Show Only Active Components" : "Show All"}
             </p>

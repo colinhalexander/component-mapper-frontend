@@ -9,7 +9,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 30px;
   font-weight: 700;
   padding: 20px 30px;
   color: lightblue;
@@ -17,13 +16,20 @@
   border-top: solid 1px;
 }
 
+.project-page h2 {
+  font-size: 30px;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.219);
+}
+
 .project-menu {
+  display: flex;
   font-size: 15px;
 }
 
 .project-menu > p {
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.1s;
+  padding: 0px 10px;
 }
 
 .project-menu > p:hover {

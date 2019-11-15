@@ -2,5 +2,19 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(100vh - 140px);
+  height: calc(100vh - 120px);
+  background-image: url("http://tangentde.com/wp-content/uploads/sites/89/2018/11/architectural-drawing-1080x675.jpeg");
+  background-size: cover;
+}
+
+.sign-in-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-flow: column nowrap;
+  height: 300px;
+  width: 600px;
+  border: solid 1px black;
+  background-color: rgb(144, 200, 219);
+  color: white;
 }
