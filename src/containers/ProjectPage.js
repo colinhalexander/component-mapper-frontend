@@ -15,15 +15,47 @@ export default class ProjectPage extends Component {
     showAll: true,
     form: {
       show: false,
-      component: {}
+      parent: {}
     }
   }
 
-  toggleForm = (component) => {
-    if (!this.state.form.show && component) {
+  findParentAndAddChild = (components, newComponent, parentID) => {
+    components.forEach(component => {
+      if (component.id !== parentID) {
+        if (component.children) {
+          this.findParentAndAddChild(component.children, newComponent, parentID)
+        }
+      } else {
+        if (component.children) {
+          component.children.push(newComponent)
+        } else {
+          component.children = [newComponent]
+        }
+      }
+    })
+
+    return components
+  }
+
+  addComponent = (newComponent, parentID) => {
+    const { components } = this.state.project
+    const componentsCopy = this.findParentAndAddChild(components, newComponent, parentID)
+
+    this.setState((prevState) => {
+      return {
+        project: {
+          ...prevState.project,
+          components: componentsCopy
+        }
+      }
+    })
+  }
+
+  toggleForm = (parent) => {
+    if (!this.state.form.show && parent) {
       this.setState({
         form: {
-          component,
+          parent,
           show: true
         }
       })
@@ -31,7 +63,7 @@ export default class ProjectPage extends Component {
       this.setState({
         form: {
           show: false,
-          component: {}
+          parent: {}
         }
       })
     }
@@ -71,8 +103,17 @@ export default class ProjectPage extends Component {
           level={0}
           showAll={showAll}
           toggleForm={this.toggleForm}
+          addComponent={this.addComponent}
         />
-        {form.show ? <ComponentForm toggleForm={this.toggleForm} component={form.component} projectID={project.id} /> : ""}
+        {
+          form.show
+            ? <ComponentForm
+                toggleForm={this.toggleForm}
+                parent={form.parent}
+                projectID={project.id}
+                addComponent={this.addComponent}
+              /> 
+            : ""}
       </div>
     )
   }

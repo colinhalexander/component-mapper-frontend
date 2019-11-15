@@ -17,20 +17,46 @@ export default class ComponentForm extends Component {
   }
 
   handleChange = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value
-    })
+    if (event.target.name === "name") {
+      this.setState({
+        name: event.target.value.replace(/\s/g, '')
+      })
+    } else {
+      this.setState({
+        [event.target.name]: event.target.value
+      })
+    }
   }
 
   handleSubmit = (event) => {
     event.preventDefault()
 
-    
+    const { parent, projectID, addComponent } = this.props
+
+    const request = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        component: {
+          ...this.state,
+          project_id: projectID
+        },
+        parent_id: parent.id
+      })
+    }
+
+    fetch("http://localhost:3000/components", request)
+      .then(response => response.json())
+      .then(component => {
+        console.log(component)
+        addComponent(component, parent.id)
+      })
   }
 
   render() {
     const { name, type, notes } = this.state
-    console.log(this.props.component)
 
     return (
       <div className="component-form-wrapper" onClick={this.toggleForm}>
@@ -43,13 +69,11 @@ export default class ComponentForm extends Component {
               placeholder="Name"
               onChange={this.handleChange}
             />
-            <div className="">
-              <select name="type" value={type} onChange={this.handleChange} >
-                <option value="">Select Type</option>
-                <option value="Class">Class</option>
-                <option value="Functional">Functional</option>
-              </select>
-            </div>
+            <select name="type" value={type} onChange={this.handleChange} >
+              <option value="">Select Type</option>
+              <option value="Class">Class</option>
+              <option value="Functional">Functional</option>
+            </select>
             <textarea
               name="notes"
               value={notes}
