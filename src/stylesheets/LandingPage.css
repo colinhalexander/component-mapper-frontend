@@ -10,11 +10,45 @@ main {
 .sign-in-form {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
   flex-flow: column nowrap;
   height: 300px;
-  width: 600px;
-  border: solid 1px black;
+  width: 400px;
+  border: solid 2px rgba(0, 0, 0, 0.171);
   background-color: rgb(144, 200, 219);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.329);
   color: white;
+}
+
+.sign-in-form > h3 {
+  font-size: 25px;
+  margin-bottom: 30px;
+}
+
+.signin-form-inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid white;
+  padding: 20px 30px;
+}
+
+.signin-form-inputs > * {
+  margin: 3px;
+}
+
+#signin-btn {
+  display: block;
+  background-color: rgb(255, 255, 254);
+  color: rgb(34, 80, 95);
+  margin-top: 15px;
+  padding: 5px 10px;
+  width: 80%;
+  font-size: 12px;
+  transition: all .2s;
+}
+
+#signin-btn:hover {
+  transform: scale(1.02);
+  cursor: pointer;
 }

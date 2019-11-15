@@ -78,7 +78,7 @@
 
 .projects-list {
   overflow: auto;
-  border: 1px solid;
+  border: 2px solid;
   height: 210px;
 }
 
@@ -88,7 +88,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 5px;
-  border: solid 1px;
+  border-bottom: solid 1px;
   line-height: 1.4;
 }
 

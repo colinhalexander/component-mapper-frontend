@@ -13,8 +13,12 @@ export default class SignInForm extends Component {
   render() {
     return (
       <form className="sign-in-form">
-        <p>SignInForm???</p>
-        <button onClick={this.handleClick}>Go To User Page</button>
+        <h3>Sign In</h3>
+        <div className="signin-form-inputs">
+          <input name="username" placeholder="Username" />
+          <input name="password" type="password" placeholder="Password" />
+          <button id="signin-btn" onClick={this.handleClick}>Log In</button>
+        </div>
       </form>
     )
   }
