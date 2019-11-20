@@ -85,13 +85,12 @@ export default class UserPage extends Component {
 
   render() {
     const { showForm } = this.state,
-          { user } = this.props
-
-    const { username, bio, display_name, avatar_url } = user || {}
+          { user } = this.props,
+          { username, bio, display_name, avatar_url } = user || {}
 
     return (
       <div className="user-page">
-        <NavBar history={this.props.history} />
+        <NavBar history={this.props.history} isLoggedIn={user ? true : false} />
         <main>
           <section className="user-profile">
             <div className="user-header">

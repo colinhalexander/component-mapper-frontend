@@ -18,18 +18,26 @@ export default class App extends Component {
   }
   
   render() {
+    const { user } = this.state
+
     return (
       <Router>
         <div className="App">
           <Route 
             exact path="/users/:username"
-            render={(props) => <UserPage {...props} user={this.state.user} setUser={this.setUser} />}
+            render={
+              (props) => <UserPage
+                {...props}
+                user={user}
+                setUser={this.setUser}
+              />
+            }
           />
           <Route
             path="/users/:username/:project"
             render={(props) => <ProjectPage {...props} />}
           />
-          <Route exact path="/" render={(props) => <LandingPage {...props} />} />
+          <Route exact path="/" render={(props) => <LandingPage {...props} user={user} />} />
         </div>
       </Router>
     )

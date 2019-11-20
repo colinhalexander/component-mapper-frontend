@@ -7,48 +7,42 @@ main {
   background-size: cover;
 }
 
-.sign-in-form {
+.welcome {
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-flow: column nowrap;
-  height: 300px;
-  width: 400px;
-  border: solid 2px rgba(0, 0, 0, 0.171);
-  background-color: rgb(144, 200, 219);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.329);
-  color: white;
-}
-
-.sign-in-form > h3 {
-  font-size: 25px;
-  margin-bottom: 30px;
-}
-
-.signin-form-inputs {
-  display: flex;
   flex-direction: column;
-  align-items: center;
-  border: 1px solid white;
-  padding: 20px 30px;
+  width: 90%;
+  height: 90%;
+  padding: 50px 200px;
+  background-color: rgba(144, 200, 219, 0.904);
+  border: 2px solid rgba(62, 102, 116, 0.637);
+  color: white;
+  line-height: 1.6;
+  box-sizing: border-box;
+  overflow: auto;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.315);
+  /* text-align: center; */
 }
 
-.signin-form-inputs > * {
-  margin: 3px;
+.welcome > * {
+  margin: 10px 0px;
 }
 
-#signin-btn {
-  display: block;
-  background-color: rgb(255, 255, 254);
-  color: rgb(34, 80, 95);
-  margin-top: 15px;
-  padding: 5px 10px;
-  width: 80%;
-  font-size: 12px;
-  transition: all .2s;
+.welcome > h3 {
+  font-size: 30px;
+  font-weight: bold;
 }
 
-#signin-btn:hover {
-  transform: scale(1.02);
-  cursor: pointer;
+.welcome > h2 {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.welcome > p {
+  font-size: 18px;
+  width: 100%
+}
+
+.welcome a {
+  color: white;
 }
