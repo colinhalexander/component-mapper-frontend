@@ -7,7 +7,7 @@ export default class SignInForm extends Component {
   }
   
   handleClick = () => {
-    fetch("http://localhost:3000/auth")
+    window.location.href = "http://localhost:3000/auth"
   }
 
   render() {

@@ -16,18 +16,21 @@ export default class UserPage extends Component {
   }
 
   componentDidMount() {
-
     if (!this.props.user) {
       const { username } = this.props.match.params
   
       fetch(`http://localhost:3000/users/${username}`)
         .then(response => response.json())
         .then(user => {
+          console.log(user)
           const { projects } = user
           
           this.props.setUser(user)
           this.setState({ projects })
         })
+    } else { // necessary?
+      const { projects } = this.props.user
+      this.setState({ projects })
     }
   }
 
@@ -81,8 +84,10 @@ export default class UserPage extends Component {
     }
 
   render() {
-    const { username } = this.props.match.params
-    const { showForm } = this.state
+    const { showForm } = this.state,
+          { user } = this.props
+
+    const { username, bio, display_name, avatar_url } = user || {}
 
     return (
       <div className="user-page">
@@ -95,11 +100,11 @@ export default class UserPage extends Component {
             <div className="user-info-projects-wrapper">
               <div className="user-info">
                 <div id="user-avatar">
-                  <img src="http://www.marismith.com/wp-content/uploads/2014/07/facebook-profile-blank-face.jpeg" alt="avatar" />
+                  <img src={avatar_url} alt="avatar" />
                 </div>
-                <p>Firstname Lastname</p>
+                <p>{display_name}</p>
                 <br />
-                <p>Bio: Some kind of information here, just like something you know, for example, this, or maybe something like this, etc.</p>
+                <p>Bio: {bio}</p>
               </div>
               <div className="user-projects">
                 <div className="projects-header">
