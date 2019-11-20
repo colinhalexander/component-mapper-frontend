@@ -19,10 +19,9 @@ export default class UserPage extends Component {
     if (!this.props.user) {
       const { username } = this.props.match.params
   
-      fetch(`http://localhost:3000/users/${username}`)
+      fetch(`https://component-mapper.herokuapp.com/users/${username}`)
         .then(response => response.json())
         .then(user => {
-          console.log(user)
           const { projects } = user
           
           this.props.setUser(user)
@@ -122,7 +121,7 @@ export default class UserPage extends Component {
         </main>
         {
           showForm
-            ? <ProjectForm hideForm={this.toggleForm} addProject={this.addProject} />
+            ? <ProjectForm hideForm={this.toggleForm} addProject={this.addProject} userID={user.id} />
             : ""
         }
         <Footer />

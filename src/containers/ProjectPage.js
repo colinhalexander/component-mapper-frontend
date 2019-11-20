@@ -73,7 +73,7 @@ export default class ProjectPage extends Component {
     const { project } = this.props.location.state || { project: { id: 1 } }
 
     if (project) {
-      fetch(`http://localhost:3000/projects/${project.id}`)
+      fetch(`https://component-mapper.herokuapp.com/projects/${project.id}`)
         .then(response => response.json())
         .then(project => this.setState({ project }))
     }

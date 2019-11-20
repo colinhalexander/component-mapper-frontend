@@ -47,7 +47,7 @@ export default class ComponentForm extends Component {
       })
     }
 
-    fetch("http://localhost:3000/components", request)
+    fetch("https://component-mapper.herokuapp.com/components", request)
       .then(response => response.json())
       .then(component => {
         addComponent(component, parent.id)

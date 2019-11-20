@@ -6,7 +6,7 @@ export default function NavBar({ history, isLoggedIn, username }) {
 
   const goHome = () => { history.push("/") }
   const goToUserPage = () => { history.push(`/users/${username}`) }
-  const goToGitHub = () => { window.location.href = "http://localhost:3000/auth" }
+  const goToGitHub = () => { window.location.href = "https://component-mapper.herokuapp.com/auth" }
 
   return (
     <header className="nav-bar">
