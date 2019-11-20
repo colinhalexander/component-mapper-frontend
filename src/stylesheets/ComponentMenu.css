@@ -11,6 +11,10 @@
   z-index: 1;
 }
 
+.component-menu:hover {
+  cursor: pointer;
+}
+
 .component-menu-option {
   background-color: white;
 }
@@ -18,4 +22,5 @@
 .component-menu-option:hover {
   background-color: rgb(156, 225, 248);
   color: white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.144);
 }

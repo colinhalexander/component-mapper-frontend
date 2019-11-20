@@ -12,17 +12,21 @@ export default class App extends Component {
   state = {
     user: null
   }
+
+  setUser = (user) => {
+    this.setState({ user })
+  }
   
   render() {
     return (
       <Router>
         <div className="App">
           <Route 
-            exact path="/user/:username"
-            render={(props) => <UserPage {...props} user={this.state.user} />}
+            exact path="/users/:username"
+            render={(props) => <UserPage {...props} user={this.state.user} setUser={this.setUser} />}
           />
           <Route
-            path="/user/:username/:project"
+            path="/users/:username/:project"
             render={(props) => <ProjectPage {...props} />}
           />
           <Route exact path="/" render={(props) => <LandingPage {...props} />} />

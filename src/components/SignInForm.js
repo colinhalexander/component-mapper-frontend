@@ -7,19 +7,14 @@ export default class SignInForm extends Component {
   }
   
   handleClick = () => {
-    this.props.history.push("/user/example-user")
+    fetch("http://localhost:3000/auth")
   }
 
   render() {
     return (
-      <form className="sign-in-form">
-        <h3>Sign In</h3>
-        <div className="signin-form-inputs">
-          <input name="username" placeholder="Username" />
-          <input name="password" type="password" placeholder="Password" />
-          <button id="signin-btn" onClick={this.handleClick}>Log In</button>
-        </div>
-      </form>
+      <div className="sign-in-form">
+        <button id="signin-btn" onClick={this.handleClick}>Sign In With GitHub</button>
+      </div>
     )
   }
 }

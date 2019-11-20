@@ -16,9 +16,19 @@ export default class UserPage extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:3000/projects")
-      .then(response => response.json())
-      .then(projects => this.setState({ projects }))
+
+    if (!this.props.user) {
+      const { username } = this.props.match.params
+  
+      fetch(`http://localhost:3000/users/${username}`)
+        .then(response => response.json())
+        .then(user => {
+          const { projects } = user
+          
+          this.props.setUser(user)
+          this.setState({ projects })
+        })
+    }
   }
 
   toggleForm = (event) => {

@@ -9,11 +9,14 @@ export default function ComponentMenu(props) {
   return (
     <div className="component-menu-wrapper" onClick={toggleMenu}>
       <div className="component-menu">
+        <div className="component-menu-option">
+          <p>See Details/Edit</p>
+        </div>
         <div onClick={() => toggleForm(component)} className="component-menu-option">
           <p>Add Child Component</p>
         </div>
         <div className="component-menu-option">
-          <p>Edit Component</p>
+          <p>Delete Component</p>
         </div>
       </div>
     </div>
