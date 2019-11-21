@@ -11,18 +11,18 @@ export default class ProjectForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    const { hideForm, addProject, userID } = this.props
 
-    const request = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        ...this.state,
-        user_id: userID
-      })
-    }
+    const { hideForm, addProject, userID } = this.props,
+          request = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              ...this.state,
+              user_id: userID
+            })
+          }
 
     fetch("https://component-mapper.herokuapp.com/projects", request)
       .then(response => response.json())
