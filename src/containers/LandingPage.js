@@ -6,13 +6,14 @@ import NavBar from '../components/NavBar'
 import Footer from '../components/Footer'
 
 export default function LandingPage({ history, user }) {
+
   return (
     <div className="landing-page">
       <NavBar history={history} isLoggedIn={user ? true : false} username={user ?user.username : ""} />
       <main>
         <div className="welcome">
           <h3>Welcome{user ? `, ${user.username}` : ""}!</h3>
-          <p>Component Mapper is a tool for planning React projects. Sign in with GitHub to get started. Once you've logged in, you will be redirected to your user page where you can create new projects and begin to work on them. Watch the demo below to see the Component Mapper tool in action.</p>
+          <p>Component Mapper is a tool for planning React projects. Sign in with GitHub to get started (please wait about 30 seconds before clicking the sign-in link to give the backend time to wake up). Once you've logged in, you will be redirected to your user page where you can create new projects and begin to work on them. Watch the demo below to see the Component Mapper tool in action.</p>
           <p>[--Demo forthcoming--]</p>
           <h2>About</h2>
           <p>This app was designed using React, Node, and Express. It uses the <a href="http://www.passportjs.org/">Passport.js</a> library to manage OAuth 2.0 with GitHub.</p>

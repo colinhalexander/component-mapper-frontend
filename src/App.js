@@ -13,6 +13,10 @@ export default class App extends Component {
     user: null
   }
 
+  componentDidMount() {
+    fetch("https://component-mapper.herokuapp.com/wakeup")
+  }
+
   setUser = (user) => {
     this.setState({ user })
   }
